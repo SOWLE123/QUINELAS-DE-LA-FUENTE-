@@ -102,15 +102,16 @@
                 <input type="text" id="nombre" name="nombre" placeholder="Escribe tu nombre o apodo" required>
                 <label for="codigo">Código de Acceso:</label>
                 <input type="text" id="codigo" name="codigo" placeholder="El código que se te asignó" required>
+                
                 <h2 id="titulo-jornada" class="titulo-jornada">Cargando Jornada...</h2>
 
                 <div id="partidos">Cargando partidos...</div>
-                <label for="comodin">Partido comodín, valido puntos al doble:</label>
+                <label for="comodin">Selecciona partido Comodin,puntosDobles:</label>
                 <select id="comodin" name="comodin" required>
                     <option value="">Primero carga los partidos</option>
                 </select>
-                <label for="totalgoles">Suma Total de Goles (Los 9 partidos):</label>
-                <input type="number" id="totalgoles" name="totalgoles" min="0" placeholder="Ej: 25" required>
+                <label for="totalgoles">Total de goles:</label>
+                <input type="number" id="totalgoles" name="totalgoles" min="0" placeholder="Ej: 25 (3 pts extra si le atinas al total de goles real)" required>
                 <button type="submit">Enviar Quinela</button>
             </form>
             
@@ -147,7 +148,7 @@
                     const partidosDiv = document.getElementById("partidos");
                     const comodinSelect = document.getElementById("comodin");
                     partidosDiv.innerHTML = ''; 
-                    comodinSelect.innerHTML = '<option value="">Partido comodin ,valido puntos al doble</option>';
+                    comodinSelect.innerHTML = '<option value=""> Selecciona partido comodin </option>';
                     data.partidos.forEach((p, i) => {
                         const partido = document.createElement("div");
                         partido.className = "partido";
@@ -216,3 +217,4 @@
     </script>
 </body>
 </html>
+
