@@ -28,11 +28,8 @@
             align-items: center; justify-content: center; gap: 20px;
         }
         .titulo-seccion {
-            color: #002060;         /* Color azul oscuro */
-           font-size: 18px;       /* Tamaño de letra */
-           font-weight: bold;     /* Negrita */
-           text-align: center;    /* Centrado */
-           margin-bottom: 15px;   /* Espacio debajo del título */
+            color: #002060; font-size: 18px; font-weight: bold;
+            text-align: center; margin-bottom: 15px;
         }
         .header-icon { width: 35px; height: auto; }
         .form-content { padding: 30px; }
@@ -51,45 +48,34 @@
             margin-top: 10px; transition: all 0.3s;
         }
         button[type="submit"]:hover { background-color: #009040; transform: translateY(-2px); }
-       .instrucciones-box {
-    padding: 20px;
-    margin-bottom: 25px;
-    border-radius: 8px;
-    background: linear-gradient(135deg, #E8F5E9, #C8E6C9);
-    color: #1B5E20;
-    border-left: 5px solid #0070C0;
-    
-    /* --- LÍNEAS NUEVAS --- */
-      max-height: 250px;  /* Altura máxima de la caja */
-     overflow-y: auto;   /* Añade la barra deslizable vertical SÓLO si es necesario */
-     }
+        .instrucciones-box {
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #E8F5E9, #C8E6C9);
+            color: #1B5E20;
+            border-left: 5px solid #0070C0;
+            max-height: 250px;
+            overflow-y: auto;
         }
-        .info-quinela { margin-bottom: 20px; font-weight: bold; }
+        .info-quiniela { margin-bottom: 10px; font-weight: bold; text-align: center; }
+        .titulo-jornada {
+            text-align: center; color: #002060; margin-top: 0; margin-bottom: 25px;
+        }
         .partido {
             display: flex; align-items: center; justify-content: space-between; gap: 10px;
         }
         .partido label { flex: 1; text-align: center; }
         .partido input { width: 60px; text-align: center; }
-
-        /* Estilos para el cuadro de mensaje de texto */
         #mensaje-respuesta {
-            margin-top: 20px;
-            padding: 15px;
-            border-radius: 8px;
-            font-weight: bold;
-            text-align: center;
-            border: 2px solid transparent;
-            transition: all 0.3s;
+            margin-top: 20px; padding: 15px; border-radius: 8px; font-weight: bold;
+            text-align: center; border: 2px solid transparent; transition: all 0.3s;
         }
         .mensaje-exito {
-            background-color: #d4edda;
-            color: #155724;
-            border-color: #c3e6cb;
+            background-color: #d4edda; color: #155724; border-color: #c3e6cb;
         }
         .mensaje-error {
-            background-color: #f8d7da;
-            color: #721c24;
-            border-color: #f5c6cb;
+            background-color: #f8d7da; color: #721c24; border-color: #f5c6cb;
         }
     </style>
 </head>
@@ -101,39 +87,34 @@
                 <span>Quinela Liga MX</span>
                 <img src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Soccerball.svg" class="header-icon" alt="Balón de fútbol">
             </h1>
-            </div>
-            <div class="form-content">
+        </div>
+        <div class="form-content">
             <h2 class="titulo-seccion">Instrucciones y Reglas</h2>
             <div id="instrucciones" class="instrucciones-box">Cargando reglas...</div>
             
-            <div class="info-quinela">
-                <span>Participantes: <span id="participantes">...</span></span> 
-            </div>
+            <div class="info-quiniela">
+                <span>Participantes: <span id="participantes">...</span></span> | 
                 <span>Fecha Límite: <span id="fechaLimite">...</span></span>
             </div>
-            <h2 id="titulo-jornada" class="titulo-jornada">Cargando Jornada...</h2>
+
             <form id="formulario">
                 <label for="nombre">Tu Nombre:</label>
                 <input type="text" id="nombre" name="nombre" placeholder="Escribe tu nombre o apodo" required>
-                
                 <label for="codigo">Código de Acceso:</label>
                 <input type="text" id="codigo" name="codigo" placeholder="El código que se te asignó" required>
+                <h2 id="titulo-jornada" class="titulo-jornada">Cargando Jornada...</h2>
 
                 <div id="partidos">Cargando partidos...</div>
-
-                <label for="comodin">Partido comodín,valido puntos al doble:</label>
+                <label for="comodin">Partido comodín, valido puntos al doble:</label>
                 <select id="comodin" name="comodin" required>
                     <option value="">Primero carga los partidos</option>
                 </select>
-
                 <label for="totalgoles">Suma Total de Goles (Los 9 partidos):</label>
                 <input type="number" id="totalgoles" name="totalgoles" min="0" placeholder="Ej: 25" required>
-
                 <button type="submit">Enviar Quinela</button>
             </form>
             
             <div id="mensaje-respuesta" style="display: none;"></div>
-
         </div>
     </div>
 
@@ -142,9 +123,8 @@
             const scriptURL = "https://script.google.com/macros/s/AKfycbwSc2WDuBgI7rZ2G8R63uSD_j3G2y9Hx-QwLAZJRbpQ-_EtkTR9E_FYw-PXelt_z3UD/exec";
             let fechaLimiteISO = null;
 
-            // Referencias a los elementos de la página
             const form = document.getElementById("formulario");
-            const mensajeDiv = document.getElementById('mensaje-respuesta'); // El div para mensajes de texto
+            const mensajeDiv = document.getElementById('mensaje-respuesta');
 
             async function cargarDatos() {
                 try {
@@ -152,7 +132,14 @@
                     if (!res.ok) throw new Error(`Error de red: ${res.statusText}`);
                     const data = await res.json();
                     
-                    document.getElementById("instrucciones").innerHTML = `<strong>Reglas:</strong><br>${data.reglas.replace(/\n/g, "<br>")}`;
+                    document.getElementById("titulo-jornada").textContent = `JORNADA ${data.numero_jornada}`;
+                    
+                    let textoOriginal = data.reglas;
+                    let textoFormateado = textoOriginal.replace(/\*(.*?)\*/g, '<strong>$1</strong>');
+                    textoFormateado = textoFormateado.replace(/_(.*?)_/g, '<u>$1</u>');
+                    textoFormateado = textoFormateado.replace(/\n/g, '<br>');
+
+                    document.getElementById("instrucciones").innerHTML = `<strong>Reglas:</strong><br>${textoFormateado}`;
                     document.getElementById("participantes").textContent = data.participantes;
                     document.getElementById("fechaLimite").textContent = new Date(data.fecha_limite).toLocaleString('es-MX', { dateStyle: 'long', timeStyle: 'short' });
                     fechaLimiteISO = data.fecha_limite;
@@ -161,7 +148,6 @@
                     const comodinSelect = document.getElementById("comodin");
                     partidosDiv.innerHTML = ''; 
                     comodinSelect.innerHTML = '<option value="">Partido comodin ,valido puntos al doble</option>';
-
                     data.partidos.forEach((p, i) => {
                         const partido = document.createElement("div");
                         partido.className = "partido";
@@ -193,11 +179,11 @@
                 mensajeDiv.style.display = 'none';
 
                 if (fechaLimiteISO && new Date() > new Date(fechaLimiteISO)) {
-                    mensajeDiv.textContent = "La fecha límite ha sido superada. Ya no puedes enviar la quiniela.";
+                    mensajeDiv.textContent = "La fecha límite ha sido superada. Ya no puedes enviar la quinela.";
                     mensajeDiv.className = 'mensaje-error';
                     mensajeDiv.style.display = 'block';
                     submitButton.disabled = false;
-                    submitButton.textContent = 'Enviar Quiniela';
+                    submitButton.textContent = 'Enviar Quinela';
                     return;
                 }
 
@@ -215,13 +201,13 @@
                     mensajeDiv.style.display = 'block';
 
                 } catch (err) {
-                    mensajeDiv.textContent = "Hubo un problema al enviar la quiniela. Inténtalo de nuevo.";
+                    mensajeDiv.textContent = "Hubo un problema al enviar la quinela. Inténtalo de nuevo.";
                     mensajeDiv.className = 'mensaje-error';
                     mensajeDiv.style.display = 'block';
                     console.error(err);
                 } finally {
                     submitButton.disabled = false;
-                    submitButton.textContent = 'Enviar Quiniela';
+                    submitButton.textContent = 'Enviar Quinela';
                 }
             });
 
@@ -230,6 +216,7 @@
     </script>
 </body>
 </html>
+
 
 
 
