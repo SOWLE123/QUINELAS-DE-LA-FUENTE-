@@ -27,6 +27,13 @@
             text-transform: uppercase; letter-spacing: 1px; display: flex;
             align-items: center; justify-content: center; gap: 20px;
         }
+      .titulo-seccion {
+    color: #002060;         /* Color azul oscuro */
+    font-size: 18px;       /* Tamaño de letra */
+    font-weight: bold;     /* Negrita */
+    text-align: center;    /* Centrado */
+    margin-bottom: 15px;   /* Espacio debajo del título */
+}
         .header-icon { width: 35px; height: auto; }
         .form-content { padding: 30px; }
         form { display: flex; flex-direction: column; gap: 25px; }
@@ -95,12 +102,12 @@
                 <img src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Soccerball.svg" class="header-icon" alt="Balón de fútbol">
             </h1>
         </div>
-
         <div class="form-content">
+            <h2 class="titulo-seccion">Instrucciones y Reglas</h2>
             <div id="instrucciones" class="instrucciones-box">Cargando reglas...</div>
             
             <div class="info-quinela">
-                <span>Participantes: <span id="participantes">...</span></span> | 
+                <span>Participantes: <span id="participantes">...</span></span> 
             </div>
                 <span>Fecha Límite: <span id="fechaLimite">...</span></span>
             </div>
@@ -223,5 +230,6 @@
     </script>
 </body>
 </html>
+
 
 
