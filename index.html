@@ -57,7 +57,7 @@
     overflow-y: auto;   /* Añade la barra deslizable vertical SÓLO si es necesario */
 }
         }
-        .info-quiniela { margin-bottom: 20px; font-weight: bold; }
+        .info-quinela { margin-bottom: 20px; font-weight: bold; }
         .partido {
             display: flex; align-items: center; justify-content: space-between; gap: 10px;
         }
@@ -91,7 +91,7 @@
         <div class="form-header">
             <h1>
                 <img src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Soccerball.svg" class="header-icon" alt="Balón de fútbol">
-                <span>Quiniela Liga MX</span>
+                <span>Quinela Liga MX</span>
                 <img src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Soccerball.svg" class="header-icon" alt="Balón de fútbol">
             </h1>
         </div>
@@ -99,21 +99,22 @@
         <div class="form-content">
             <div id="instrucciones" class="instrucciones-box">Cargando reglas...</div>
             
-            <div class="info-quiniela">
+            <div class="info-quinela">
                 <span>Participantes: <span id="participantes">...</span></span> | 
+            </div>
                 <span>Fecha Límite: <span id="fechaLimite">...</span></span>
             </div>
 
             <form id="formulario">
                 <label for="nombre">Tu Nombre:</label>
-                <input type="text" id="nombre" name="nombre" placeholder="Escribe tu nombre completo" required>
+                <input type="text" id="nombre" name="nombre" placeholder="Escribe tu nombre o apodo" required>
                 
                 <label for="codigo">Código de Acceso:</label>
                 <input type="text" id="codigo" name="codigo" placeholder="El código que se te asignó" required>
 
                 <div id="partidos">Cargando partidos...</div>
 
-                <label for="comodin">Selecciona tu partido comodín:</label>
+                <label for="comodin">Partido comodín,valido puntos al doble:</label>
                 <select id="comodin" name="comodin" required>
                     <option value="">Primero carga los partidos</option>
                 </select>
@@ -121,7 +122,7 @@
                 <label for="totalgoles">Suma Total de Goles (Los 9 partidos):</label>
                 <input type="number" id="totalgoles" name="totalgoles" min="0" placeholder="Ej: 25" required>
 
-                <button type="submit">Enviar Quiniela</button>
+                <button type="submit">Enviar Quinela</button>
             </form>
             
             <div id="mensaje-respuesta" style="display: none;"></div>
@@ -152,7 +153,7 @@
                     const partidosDiv = document.getElementById("partidos");
                     const comodinSelect = document.getElementById("comodin");
                     partidosDiv.innerHTML = ''; 
-                    comodinSelect.innerHTML = '<option value="">Selecciona un partido</option>';
+                    comodinSelect.innerHTML = '<option value="">Partido comodin ,valido puntos al doble</option>';
 
                     data.partidos.forEach((p, i) => {
                         const partido = document.createElement("div");
@@ -222,4 +223,5 @@
     </script>
 </body>
 </html>
+
 
